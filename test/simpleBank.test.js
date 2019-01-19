@@ -35,7 +35,7 @@ contract('SimpleBank', function(accounts) {
     await bank.enroll({from: bob});
 
     var result = await bank.deposit({from: alice, value: deposit});
-    const balance = (await bank.balance.call({from: alice})).toNumber();
+    const balance = wait bank.balance.call({from: alice});
 
     assert.equal(deposit.toString(), balance, 'deposit amount incorrect, check deposit method');
 
@@ -53,7 +53,7 @@ contract('SimpleBank', function(accounts) {
     const initialAmount = 0;
    
 	var result = await bank.withdraw(deposit, {from: alice});
-    const balance = (await bank.balance.call({from: alice})).toNumber();
+    const balance = await bank.balance.call({from: alice});
 
     assert.equal(balance.toString(), initialAmount.toString(), 'balance incorrect after withdrawal, check withdraw method');
 
